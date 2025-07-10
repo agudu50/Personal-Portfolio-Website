@@ -1,0 +1,110 @@
+﻿@model Personal_Portfolio_Website.Models.ContactViewModel
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<!-- Contact Section -->
+<section id="contact" class="contact section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>If you have a project, question, or just want to say hello — feel free to send a message.</p>
+    </div>
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+            <!-- Contact Info -->
+            <div class="col-lg-5">
+                <div class="info-wrap">
+                    <div class="info-item d-flex">
+                        <i class="bi bi-geo-alt flex-shrink-0"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>Achimota, Accra, Ghana</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item d-flex">
+                        <i class="bi bi-telephone flex-shrink-0"></i>
+                        <div>
+                            <h3>Call Me</h3>
+                            <p>+233 558 524 473</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item d-flex">
+                        <i class="bi bi-envelope flex-shrink-0"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>anthonygudu2020@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <iframe src="https://maps.google.com/maps?q=Achimota,%20Accra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            frameborder="0" style="width: 100%; height: 270px; border: 0;" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-lg-7">
+                <div class="card shadow-sm border-0 p-4 rounded-4 bg-light" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="mb-4 fw-semibold text-primary">📬 Send Me a Message</h4>
+
+                    @using (Html.BeginForm("SendEmail", "Home", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row g-3">
+
+                            @if (TempData["Success"] != null)
+                            {
+                                <div class="alert alert-success text-center">@TempData["Success"]</div>
+                            }
+
+                            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                            <div class="col-md-6">
+                                <label class="form-label">Your Name</label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control rounded-3", placeholder = "Enter your name", required = "required" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Your Email</label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control rounded-3", type = "email", placeholder = "Enter your email", required = "required" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Subject</label>
+                                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control rounded-3", placeholder = "Subject", required = "required" })
+                                @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Message</label>
+                                @Html.TextAreaFor(m => m.Message, new { @class = "form-control rounded-3", rows = 6, placeholder = "Write your message here...", required = "required" })
+                                @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-12 text-center mt-3">
+                                <button type="submit" class="btn btn-primary btn-lg px-4 rounded-pill shadow-sm">
+                                    📩 Send Message
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- End Contact Form -->
+
+
+        </div>
+    </div>
+</section>
