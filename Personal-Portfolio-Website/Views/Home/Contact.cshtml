@@ -6,6 +6,14 @@
 
 }
 
+<style>
+    .hover-effect:hover {
+        color: #0d6efd !important; /* Bootstrap primary blue */
+        text-decoration: underline;
+        transition: 0.3s ease-in-out;
+    }
+</style>
+
 
 <!-- Contact Section -->
 <section id="contact" class="contact section">
@@ -31,21 +39,28 @@
                         </div>
                     </div>
 
-                    <div class="info-item d-flex">
-                        <i class="bi bi-telephone flex-shrink-0"></i>
+                    <!-- Phone -->
+                    <div class="info-item d-flex align-items-start">
+                        <i class="bi bi-telephone flex-shrink-0 text-primary fs-4 me-3"></i>
                         <div>
-                            <h3>Call Me</h3>
-                            <p>+233 558 524 473</p>
+                            <h5 class="fw-bold mb-1">Call Me</h5>
+                            <a href="tel:+233558524473" class="text-decoration-none text-dark fw-semibold hover-effect">
+                                +233 558 524 473
+                            </a>
                         </div>
                     </div>
 
-                    <div class="info-item d-flex">
-                        <i class="bi bi-envelope flex-shrink-0"></i>
+                    <!-- Email -->
+                    <div class="info-item d-flex align-items-start mt-4">
+                        <i class="bi bi-envelope flex-shrink-0 text-danger fs-4 me-3"></i>
                         <div>
-                            <h3>Email</h3>
-                            <p>anthonygudu2020@gmail.com</p>
+                            <h5 class="fw-bold mb-1">Email</h5>
+                            <a href="mailto:devtony2020@gmail.com" class="text-decoration-none text-dark fw-semibold hover-effect">
+                                devtony2020@gmail.com
+                            </a>
                         </div>
                     </div>
+
 
                     <iframe src="https://maps.google.com/maps?q=Achimota,%20Accra&t=&z=13&ie=UTF8&iwloc=&output=embed"
                             frameborder="0" style="width: 100%; height: 270px; border: 0;" allowfullscreen></iframe>
@@ -70,25 +85,25 @@
                             @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
 
                             <div class="col-md-6">
-                                <label class="form-label">Your Name</label>
-                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control rounded-3", placeholder = "Enter your name", required = "required" })
+                                <label class="form-label text-dark fw-semibold">Your Full Name</label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control rounded-3", placeholder = "Enter your full name", required = "required" })
                                 @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger small" })
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label">Your Email</label>
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control rounded-3", type = "email", placeholder = "Enter your email", required = "required" })
+                                <label class="form-label text-dark fw-semibold">Your Email</label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control rounded-3", type = "email", placeholder = "Enter your valid email", required = "required" })
                                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger small" })
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label">Subject</label>
+                                <label class="form-label text-dark fw-semibold">Subject</label>
                                 @Html.TextBoxFor(m => m.Subject, new { @class = "form-control rounded-3", placeholder = "Subject", required = "required" })
                                 @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger small" })
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label">Message</label>
+                                <label class="form-label text-dark fw-semibold">Message</label>
                                 @Html.TextAreaFor(m => m.Message, new { @class = "form-control rounded-3", rows = 6, placeholder = "Write your message here...", required = "required" })
                                 @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger small" })
                             </div>
