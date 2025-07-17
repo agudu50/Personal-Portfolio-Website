@@ -44,7 +44,7 @@ namespace Personal_Portfolio_Website.Controllers
                         EnableSsl = true,
                         DeliveryMethod = SmtpDeliveryMethod.Network,
                         UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential("devtony2020@gmail.com", "egpxykpwcxwwbvad")
+                        Credentials = new NetworkCredential("devtony2020@gmail.com", "egpxykpwcxwwbvad") // ✅ use a valid app password
                     };
 
                     using (var message = new MailMessage(fromAddress, toAddress)
@@ -61,12 +61,18 @@ namespace Personal_Portfolio_Website.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Email sending failed: " + ex.Message);
+                    // ❌ FIX: use TempData instead of ViewBag
+                    TempData["Error"] = "Failed to send email: " + ex.Message;
+                    return RedirectToAction("Contact");
                 }
             }
 
-            return View("Contact", model); // Re-display with errors
+            ModelState.AddModelError("", "Please complete all required fields correctly.");
+            return View("Contact", model); // Pass model with errors back to the view
+
         }
+
+
 
 
         public ActionResult Projects() => View();

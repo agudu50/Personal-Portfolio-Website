@@ -8,16 +8,18 @@ namespace Personal_Portfolio_Website.Models
 {
     public class ContactViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
-        [Required, EmailAddress]
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Enter a valid email address")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Subject is required")]
         public string Subject { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Message cannot be empty")]
         public string Message { get; set; }
     }
+
 }

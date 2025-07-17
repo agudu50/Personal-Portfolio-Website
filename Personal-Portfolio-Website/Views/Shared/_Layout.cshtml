@@ -5,6 +5,8 @@
 
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +29,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Vendor CSS Files -->
     <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -61,7 +66,12 @@
 
 
 
+
+
 <body class="index-page">
+
+
+
 
     <header id="header" class="header dark-background d-flex flex-column">
         <i class="header-toggle d-xl-none bi bi-list"></i>
@@ -81,11 +91,16 @@
         </a>
 
         <div class="social-links text-center">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            <a href="https://x.com/trenchkhid008" class="x"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.snapchat.com/add/gudujnr008" class="snapchat" target="_blank">
+                <i class="fab fa-snapchat-ghost fa-lg"></i>
+            </a>
+            <a href="https://www.instagram.com/a.gudu_/" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="mailto:devtony2020@gmail.com" class="gmail" target="_blank">
+                <i class="fas fa-envelope fa-lg"></i>
+            </a>
+
+            <a href="https://www.linkedin.com/in/anthony-gudu-749234351/" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
 
 
@@ -120,13 +135,13 @@
         @RenderBody()
     </main>
 
-    <footer id="footer" class="footer position-relative light-background">
+    <footer id="footer" class="footer position-static light-background">
 
         <div class="container">
             <div class="copyright text-center ">
                 <p>© <span>Copyright</span> <strong class="px-1 sitename">TonyTech</strong> <span>All Rights Reserved 2025</span></p>
             </div>
-            
+
         </div>
 
     </footer>
@@ -148,9 +163,105 @@
     <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="~/assets/vendor/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS (ensure this is included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Main JS File -->
     <script src="~/assets/js/main.js"></script>
+
+
+
+
+
+
+
+    <!-- Toast Message (Top-Right) -->
+    <!--@if (TempData["Success"] != null || TempData["Error"] != null)
+    {
+        <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080">
+            <div class="toast align-items-center text-white bg-@(TempData["Success"] != null ? "success" : "danger") border-0 show" role="alert" id="tempToast">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        @(TempData["Success"] ?? TempData["Error"])
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }-->
+    <!-- Success or General Error Toast -->
+    @if (TempData["Success"] != null || TempData["Error"] != null)
+    {
+        <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1080">
+            <div id="mainToast"
+                 class="toast align-items-center text-white bg-@(TempData["Success"] != null ? "success" : "danger") border-0"
+                 role="alert"
+                 data-bs-autohide="true"
+                 data-bs-delay="5000"
+                 aria-live="assertive"
+                 aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        @(TempData["Success"] ?? TempData["Error"])
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Input Validation Error Toast -->
+    @if (TempData["InputError"] != null)
+    {
+        <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 1081">
+            <div id="inputErrorToast"
+                 class="toast align-items-center text-white bg-danger border-0"
+                 role="alert"
+                 data-bs-autohide="true"
+                 data-bs-delay="5000"
+                 aria-live="assertive"
+                 aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        @TempData["InputError"]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+    @section Scripts {
+        <script>
+            // Auto-dismiss success alert after 5 seconds
+            setTimeout(function () {
+                const alert = bootstrap.Alert.getOrCreateInstance(document.getElementById('success-alert'));
+                if (alert) alert.close();
+            }, 8000); // 8000ms = 5 seconds
+
+            // Auto-dismiss error alert after 5 seconds
+            setTimeout(function () {
+                const alert = bootstrap.Alert.getOrCreateInstance(document.getElementById('error-alert'));
+                if (alert) alert.close();
+            }, 10000);
+
+
+         
+
+
+
+
+
+        </script>
+    }
+
+
+
 
 </body>
 
